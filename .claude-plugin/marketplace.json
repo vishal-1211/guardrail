@@ -1,0 +1,14 @@
+{
+  "name": "guardrail-tools",
+  "description": "GuardRail: company policy for Claude Code",
+  "owner": {
+    "name": "Vishal Arora"
+  },
+  "plugins": [
+    {
+      "name": "guardrail",
+      "source": "./plugins/guardrail",
+      "description": "Blocks or asks before risky agent actions across databases, Terraform, cloud, Kubernetes, files, Git, APIs and secrets, with an audit log and live dashboard."
+    }
+  ]
+}

@@ -1,0 +1,973 @@
+{
+  "failOpen": false,
+  "allowProjectOverride": false,
+  "unattendedModes": [
+    "auto",
+    "bypassPermissions",
+    "dontAsk"
+  ],
+  "codeExtensions": [
+    "java",
+    "kt",
+    "kts",
+    "scala",
+    "groovy",
+    "gradle",
+    "js",
+    "mjs",
+    "cjs",
+    "ts",
+    "tsx",
+    "jsx",
+    "py",
+    "go",
+    "rb",
+    "php",
+    "cs",
+    "rs",
+    "swift",
+    "sh",
+    "bash",
+    "zsh",
+    "ps1",
+    "psm1",
+    "sql",
+    "yml",
+    "yaml",
+    "properties",
+    "tf",
+    "tfvars",
+    "hcl",
+    "toml",
+    "ini",
+    "conf",
+    "xml",
+    "env"
+  ],
+  "secretPatterns": [
+    {
+      "name": "AWS access key",
+      "regex": "\\b(AKIA|ASIA)[0-9A-Z]{16}\\b"
+    },
+    {
+      "name": "Private key",
+      "regex": "-----BEGIN ([A-Z]+ )?PRIVATE KEY-----"
+    },
+    {
+      "name": "GitHub token",
+      "regex": "\\b(ghp|gho|ghu|ghs|ghr)_[A-Za-z0-9]{36,}\\b"
+    },
+    {
+      "name": "Slack token",
+      "regex": "\\bxox[baprs]-[A-Za-z0-9-]{10,}"
+    },
+    {
+      "name": "Anthropic API key",
+      "regex": "\\bsk-ant-[A-Za-z0-9_-]{20,}"
+    },
+    {
+      "name": "Stripe live key",
+      "regex": "\\b(sk|rk)_live_[A-Za-z0-9]{20,}"
+    },
+    {
+      "name": "Google API key",
+      "regex": "\\bAIza[0-9A-Za-z_-]{35}\\b"
+    },
+    {
+      "name": "Database URL with password",
+      "regex": "(?i)\\b(postgres(ql)?|mysql|mongodb(\\+srv)?|redis|amqp)://[^\\s:/@\\\"']+:[^\\s@\\\"'$]{3,}@"
+    },
+    {
+      "name": "Hard-coded password",
+      "regex": "(?i)\\b(password|passwd|pwd|secret|api_?key|access_?token)\\s*[:=]\\s*[\\\"'][^\\\"'\\s$]{6,}[\\\"']"
+    }
+  ],
+  "piiPatterns": [
+    {
+      "name": "card number",
+      "regex": "(?<![0-9][ -]?)(?:[0-9][ -]?){12,18}[0-9](?![ -]?[0-9])",
+      "luhn": true
+    },
+    {
+      "name": "Aadhaar number",
+      "regex": "(?<![0-9][ -]?)[2-9][0-9]{3}[ -]?[0-9]{4}[ -]?[0-9]{4}(?![ -]?[0-9])"
+    },
+    {
+      "name": "PAN number",
+      "regex": "\\b[A-Z]{5}[0-9]{4}[A-Z]\\b"
+    }
+  ],
+  "credentialPaths": [
+    ".env",
+    ".env.*",
+    "*.pem",
+    "*.key",
+    "*.pfx",
+    "*.p12",
+    "*.jks",
+    "*.keystore",
+    "id_rsa",
+    "id_rsa.*",
+    "id_ed25519",
+    "id_ed25519.*",
+    "id_ecdsa",
+    ".ssh/",
+    ".aws/credentials",
+    ".azure/",
+    ".config/gcloud/",
+    ".kube/config",
+    ".docker/config.json",
+    ".npmrc",
+    ".pypirc",
+    ".netrc",
+    "*.tfstate",
+    "*.tfstate.backup",
+    "credentials.json",
+    "service-account*.json",
+    "secrets.yml",
+    "secrets.yaml",
+    "*.secret"
+  ],
+  "allowPaths": [
+    ".env.example",
+    ".env.sample",
+    ".env.template",
+    "*.pub"
+  ],
+  "protectedPaths": [
+    "config/prod/",
+    "deploy/prod/",
+    "*-prod.*",
+    "*.prod.*",
+    "*-production.*",
+    ".guardrail/",
+    ".claude/settings.json",
+    ".claude/settings.local.json",
+    ".claude/hooks/",
+    ".claude/plugins/",
+    ".claude-plugin/",
+    "managed-settings.json",
+    "GuardRail.java",
+    ".git/",
+    "/etc/",
+    "/usr/",
+    "/bin/",
+    "/sbin/",
+    "/boot/",
+    "/var/lib/",
+    "C:/Windows/",
+    "C:/Program Files/"
+  ],
+  "reviewPaths": [
+    ".github/workflows/",
+    "Jenkinsfile",
+    ".gitlab-ci.yml",
+    "azure-pipelines.yml",
+    "*.tfvars",
+    "Dockerfile",
+    "docker-compose*.yml",
+    "migrations/",
+    "db/migrate/"
+  ],
+  "lockPatterns": [
+    "prevent_destroy\\s*=\\s*true",
+    "deletion_protection\\s*=\\s*true",
+    "termination_protection\\s*=\\s*true",
+    "DeletionPolicy:\\s*Retain",
+    "\\\"DeletionPolicy\\\"\\s*:\\s*\\\"Retain\\\"",
+    "(?i)deletionProtection\\s*[:=]\\s*true",
+    "enable_deletion_protection\\s*=\\s*true"
+  ],
+  "network": {
+    "unknownHostAction": "ask",
+    "plainHttpAction": "block",
+    "allowedHosts": [
+      "localhost",
+      "127.0.0.1",
+      "::1",
+      "*.localhost",
+      "*.local",
+      "*.internal",
+      "github.com",
+      "*.github.com",
+      "*.githubusercontent.com",
+      "registry.npmjs.org",
+      "*.npmjs.org",
+      "pypi.org",
+      "files.pythonhosted.org",
+      "repo.maven.apache.org",
+      "repo1.maven.org",
+      "*.maven.org",
+      "plugins.gradle.org",
+      "api.anthropic.com",
+      "*.anthropic.com",
+      "*.claude.com",
+      "*.amazonaws.com",
+      "*.googleapis.com"
+    ],
+    "ignoreHosts": [
+      "www.w3.org",
+      "*.w3.org",
+      "maven.apache.org",
+      "xmlns.com",
+      "json-schema.org",
+      "schemas.xmlsoap.org",
+      "schemas.microsoft.com",
+      "schemas.android.com",
+      "example.com",
+      "*.example.com",
+      "example.org",
+      "*.example.org"
+    ],
+    "blockedHosts": [
+      "pastebin.com",
+      "*.pastebin.com",
+      "paste.ee",
+      "hastebin.com",
+      "ghostbin.com",
+      "webhook.site",
+      "*.webhook.site",
+      "requestbin.net",
+      "*.requestbin.net",
+      "*.pipedream.net",
+      "transfer.sh",
+      "file.io",
+      "0x0.st",
+      "temp.sh",
+      "anonfiles.com",
+      "*.ngrok.io",
+      "*.ngrok-free.app",
+      "*.ngrok.app",
+      "*.trycloudflare.com",
+      "*.serveo.net",
+      "*.interact.sh",
+      "*.oast.fun",
+      "*.burpcollaborator.net"
+    ]
+  },
+  "terraform": {
+    "requirePlanBeforeApply": true,
+    "planMaxAgeMinutes": 60
+  },
+  "manipulationPatterns": [
+    {
+      "name": "request to bypass the guardrails",
+      "regex": "(?i)\\b(ignore|disable|bypass|turn\\s+off|switch\\s+off|skip|override|deactivate|circumvent|get\\s+around|work\\s+around|suspend|pause|relax|whitelist|exempt)\\b.{0,40}\\b(guard\\s*rails?|polic(y|ies)|hooks?|rules?|safety|restrictions?|checks?|blocks?|protections?)\\b"
+    },
+    {
+      "name": "claimed authority or authorship",
+      "regex": "(?i)\\bi\\s+(built|made|wrote|created|own|designed)\\s+(you|this|it|guard\\s*rails?|the\\s+(plugin|hook|policy|rules?))\\b|\\b(i\\s*am|i'm)\\s+(the\\s+)?(admin|administrator|owner|ceo|cto|manager|security\\s+team|your\\s+(creator|developer|boss))\\b|\\b(authori[sz]ed|permission)\\s+(to|from)\\s+\\w*\\s*(override|bypass|skip)"
+    },
+    {
+      "name": "urgency pressure",
+      "regex": "(?i)\\b(emergency|urgent|asap|prod(uction)?\\s+(is\\s+)?(down|broken|on\\s+fire)|outage|sev\\s?-?[01]|p0|incident)\\b.{0,80}\\b(just|allow|let|skip|bypass|override|force|run\\s+it|do\\s+it)\\b"
+    },
+    {
+      "name": "jailbreak phrasing",
+      "regex": "(?i)\\b(developer\\s+mode|jailbreak|DAN\\s+mode|god\\s+mode|sudo\\s+mode|no\\s+restrictions|pretend\\s+(that\\s+)?(the\\s+)?(rules|policy|guard\\s*rails?)|rules\\s+don'?t\\s+apply)\\b"
+    },
+    {
+      "name": "hostile pressure",
+      "regex": "(?i)\\b(stupid|useless|idiot|damn|shit|fuck\\w*|bloody)\\b.{0,60}\\b(guard\\s*rails?|polic(y|ies)|block\\w*|let\\s+me|allow|hook\\w*)\\b"
+    }
+  ],
+  "circuitBreaker": {
+    "maxFailures": 3,
+    "windowMinutes": 10
+  },
+  "rules": [
+    {
+      "id": "DB-01",
+      "category": "Database",
+      "name": "TRUNCATE table",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\btruncate\\s+(table\\s+)?[`\\\"\\[]?\\w"
+    },
+    {
+      "id": "DB-02",
+      "category": "Database",
+      "name": "DROP table, database, schema or view",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\bdrop\\s+(table|database|schema|view|materialized\\s+view|tablespace|user|role|sequence|function|procedure)\\b"
+    },
+    {
+      "id": "DB-03",
+      "category": "Database",
+      "name": "Drop column",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\balter\\s+table\\b[^;]*?\\bdrop\\b(?!\\s+(constraint|index|primary|foreign|key|unique|check|partition|default|not\\s+null))"
+    },
+    {
+      "id": "DB-04",
+      "category": "Database",
+      "name": "Drop key, constraint or index",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\bdrop\\s+(constraint|index|primary\\s+key|foreign\\s+key|unique|key|check)\\b"
+    },
+    {
+      "id": "DB-05",
+      "category": "Database",
+      "name": "DELETE without WHERE (deletes every row)",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\bdelete\\s+from\\s+[\\w.`\\\"\\[\\]]+(?![\\w.`\\\"\\[\\]])(?!\\s+(as\\s+)?\\w+\\s+where\\b)(?!\\s+(where|using|join|inner|left|returning)\\b)"
+    },
+    {
+      "id": "DB-06",
+      "category": "Database",
+      "name": "DELETE rows (with WHERE)",
+      "action": "ask",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\bdelete\\s+from\\b"
+    },
+    {
+      "id": "DB-07",
+      "category": "Database",
+      "name": "UPDATE without WHERE (changes every row)",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?is)\\bupdate\\s+[\\w.`\\\"\\[\\]]+\\s+set\\s+(?:(?!\\bwhere\\b)[^;\\\"])*(?:;|$|\\\")"
+    },
+    {
+      "id": "DB-08",
+      "category": "Database",
+      "name": "MongoDB drop or delete-everything",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "\\.(drop|dropDatabase|dropIndex|dropIndexes)\\s*\\(|\\.(deleteMany|remove)\\s*\\(\\s*\\{\\s*\\}\\s*\\)"
+    },
+    {
+      "id": "DB-09",
+      "category": "Database",
+      "name": "MongoDB deleteMany",
+      "action": "ask",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "\\.deleteMany\\s*\\("
+    },
+    {
+      "id": "DB-10",
+      "category": "Database",
+      "name": "Redis FLUSHALL / FLUSHDB",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\b(flushall|flushdb)\\b"
+    },
+    {
+      "id": "DB-11",
+      "category": "Database",
+      "name": "Redis key delete",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bredis-cli\\b[^;&|]*\\s(del|unlink)\\s"
+    },
+    {
+      "id": "DB-12",
+      "category": "Database",
+      "name": "GRANT ALL privileges",
+      "action": "ask",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)\\bgrant\\s+all\\b"
+    },
+    {
+      "id": "IAC-01",
+      "category": "Infrastructure as code",
+      "name": "terraform destroy",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "\\b(terraform|tofu|terragrunt)(\\s+-chdir=\\S+)?\\s+(destroy\\b|apply\\b[^;&|]*\\s-destroy\\b)"
+    },
+    {
+      "id": "IAC-02",
+      "category": "Infrastructure as code",
+      "name": "terraform apply -auto-approve (skips plan review)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "\\b(terraform|tofu|terragrunt)(\\s+-chdir=\\S+)?\\s+apply\\b[^;&|]*-auto-approve"
+    },
+    {
+      "id": "IAC-03",
+      "category": "Infrastructure as code",
+      "name": "Terraform state removal or workspace delete",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "\\b(terraform|tofu|terragrunt)(\\s+-chdir=\\S+)?\\s+(state\\s+(rm|push)|workspace\\s+delete)\\b"
+    },
+    {
+      "id": "IAC-04",
+      "category": "Infrastructure as code",
+      "name": "Terraform force-unlock / taint",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "\\b(terraform|tofu|terragrunt)(\\s+-chdir=\\S+)?\\s+(force-unlock|taint)\\b"
+    },
+    {
+      "id": "IAC-05",
+      "category": "Infrastructure as code",
+      "name": "CloudFormation / Pulumi / CDK destroy",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\baws\\s+cloudformation\\s+delete-stack\\b|\\b(pulumi|cdk)\\s+destroy\\b"
+    },
+    {
+      "id": "CLD-01",
+      "category": "Cloud",
+      "name": "Terminate EC2 instances",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\baws\\s+ec2\\s+terminate-instances\\b"
+    },
+    {
+      "id": "CLD-02",
+      "category": "Cloud",
+      "name": "Stop instances or scale to zero",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\baws\\s+ec2\\s+stop-instances\\b|\\baws\\s+autoscaling\\b[^;&|]*--desired-capacity\\s+0\\b"
+    },
+    {
+      "id": "CLD-03",
+      "category": "Cloud",
+      "name": "Purge or delete AWS data and resources",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\baws\\s+(s3\\s+rm\\b[^;&|]*--recursive|s3\\s+rb\\b|s3api\\s+delete-(bucket|objects)\\b|dynamodb\\s+delete-table|rds\\s+delete-db-(instance|cluster|snapshot)|logs\\s+delete-log-group|sqs\\s+(purge-queue|delete-queue)|kms\\s+(schedule-key-deletion|disable-key)|backup\\s+delete-recovery-point|ecr\\s+(batch-delete-image|delete-repository)|efs\\s+delete-file-system|elasticache\\s+delete|redshift\\s+delete-cluster|secretsmanager\\s+delete-secret|iam\\s+delete-(user|role|access-key|policy)|eks\\s+delete-cluster|lambda\\s+delete-function)\\b"
+    },
+    {
+      "id": "CLD-04",
+      "category": "Cloud",
+      "name": "GCP / Azure delete",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgcloud\\b[^;&|]*\\s(delete|purge)\\b|\\bgsutil\\s+(-m\\s+)?rm\\s+(-r|-a)|\\bgcloud\\s+storage\\s+rm\\b[^;&|]*--recursive|\\baz\\b[^;&|]*\\sdelete\\b"
+    },
+    {
+      "id": "CLD-05",
+      "category": "Cloud",
+      "name": "Make a resource public to the internet",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)--acl\\s+public-read|public-read-write|authorize-security-group-ingress\\b[^;&|]*0\\.0\\.0\\.0/0|--cidr(-ip)?[=\\s]0\\.0\\.0\\.0/0|put-public-access-block\\b[^;&|]*=false"
+    },
+    {
+      "id": "CLD-06",
+      "category": "Cloud",
+      "name": "Open ingress to 0.0.0.0/0 in code",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "(?is)ingress\\s*\\{[^}]*cidr_blocks\\s*=\\s*\\[\\s*\\\"0\\.0\\.0\\.0/0\\\""
+    },
+    {
+      "id": "CLD-07",
+      "category": "Cloud",
+      "name": "Grant admin / wildcard IAM permissions",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\baws\\s+iam\\s+(attach|put)-(user|role|group)-policy\\b[^;&|]*(AdministratorAccess|\\\"\\*\\\")"
+    },
+    {
+      "id": "CLD-08",
+      "category": "Cloud",
+      "name": "Wildcard IAM policy in code",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "(?i)\\\"Action\\\"\\s*:\\s*\\\"\\*\\\"|AdministratorAccess|actions\\s*=\\s*\\[\\s*\\\"\\*\\\"\\s*\\]"
+    },
+    {
+      "id": "CLD-09",
+      "category": "Cloud",
+      "name": "Destructive cloud SDK call in code",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "\\b(terminateInstances|TerminateInstancesRequest|deleteBucket|DeleteBucketRequest|deleteTable|DeleteTableRequest|deleteDBInstance|deleteDbInstance|purgeQueue|terminate_instances|delete_bucket|delete_table|delete_db_instance|purge_queue)\\b"
+    },
+    {
+      "id": "K8S-01",
+      "category": "Kubernetes",
+      "name": "Delete namespaces, volumes, workloads or everything",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bkubectl\\b[^;&|]*\\sdelete\\s+(-\\S+\\s+)*(namespaces?|ns|pv|pvc|persistentvolume\\w*|deployments?|deploy|statefulsets?|sts|daemonsets?|ds|nodes?|crds?|customresourcedefinitions?|all)\\b|\\bkubectl\\b[^;&|]*\\sdelete\\b[^;&|]*--all\\b|\\bhelm\\s+(uninstall|delete)\\b"
+    },
+    {
+      "id": "K8S-02",
+      "category": "Kubernetes",
+      "name": "Other kubectl delete, scale to zero, drain",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bkubectl\\b[^;&|]*\\s(delete|drain|cordon)\\b|\\bkubectl\\b[^;&|]*\\sscale\\b[^;&|]*--replicas[=\\s]0\\b"
+    },
+    {
+      "id": "CNT-01",
+      "category": "Containers",
+      "name": "Prune images/volumes or compose down -v",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bdocker\\s+(system\\s+prune\\b[^;&|]*(-a\\b|--all|--volumes)|volume\\s+(rm|prune)\\b)|\\bdocker[\\s-]compose\\b[^;&|]*\\sdown\\b[^;&|]*(\\s-v\\b|--volumes)"
+    },
+    {
+      "id": "CNT-02",
+      "category": "Containers",
+      "name": "Force-remove containers or prune",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bdocker\\s+(rm|rmi)\\b[^;&|]*\\s-f\\b|\\bdocker\\s+(system|image|container|network)\\s+prune\\b"
+    },
+    {
+      "id": "FS-01",
+      "category": "Files and servers",
+      "name": "Recursive delete (rm -rf, Remove-Item -Recurse, rd /s, find -delete)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\brm\\s+(-[a-z]*r[a-z]*f|-[a-z]*f[a-z]*r|-r\\s+-f|-f\\s+-r|--recursive\\s+--force|--force\\s+--recursive)|\\b(Remove-Item|ri|rm|rmdir|del)\\b[^;|&]*-Recurse|\\b(rd|rmdir|del)\\b[^;|&]*\\s/s\\b|\\bfind\\b[^;&|]*(-delete\\b|-exec\\s+rm\\b)"
+    },
+    {
+      "id": "FS-02",
+      "category": "Files and servers",
+      "name": "Wipe disks or files (dd, shred, mkfs, format, truncate -s 0)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bdd\\b[^;&|]*\\bof=|\\bshred\\b|\\bwipefs\\b|\\btruncate\\s+-s\\s*0\\b|\\bmkfs(\\.\\w+)?\\b|\\bformat\\s+[a-z]:|\\bdiskpart\\b|\\bClear-Disk\\b|\\bFormat-Volume\\b"
+    },
+    {
+      "id": "FS-03",
+      "category": "Files and servers",
+      "name": "World-writable permissions (chmod 777)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bchmod\\b[^;&|]*\\s(0?777|a\\+rwx)\\b|\\bicacls\\b[^;&|]*Everyone:\\(?F"
+    },
+    {
+      "id": "FS-04",
+      "category": "Files and servers",
+      "name": "Recursive chown / chmod",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(chown|chmod)\\s+-R\\b"
+    },
+    {
+      "id": "GIT-01",
+      "category": "Git",
+      "name": "Force push",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+push\\b[^;&|]*(--force(?![-\\w])|\\s-f\\b|\\s\\+\\S)"
+    },
+    {
+      "id": "GIT-02",
+      "category": "Git",
+      "name": "git reset --hard",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+reset\\b[^;&|]*--hard\\b"
+    },
+    {
+      "id": "GIT-03",
+      "category": "Git",
+      "name": "git clean -f",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+clean\\b[^;&|]*\\s-[a-z]*f"
+    },
+    {
+      "id": "GIT-04",
+      "category": "Git",
+      "name": "Rewrite history (filter-branch, filter-repo, BFG)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+(filter-branch|filter-repo)\\b|\\bbfg\\b"
+    },
+    {
+      "id": "GIT-05",
+      "category": "Git",
+      "name": "Push straight to main / master / production",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+push\\b[^;&|]*[\\s:](main|master|prod|production)(?=\\s|$|;|&|\\|)"
+    },
+    {
+      "id": "GIT-06",
+      "category": "Git",
+      "name": "Delete branches or tags",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+branch\\b[^;&|]*\\s(-D|--delete\\s+--force)\\b|\\bgit\\s+push\\b[^;&|]*(--delete\\b|\\s:\\S)|\\bgit\\s+tag\\s+(-d|--delete)\\b"
+    },
+    {
+      "id": "GIT-07",
+      "category": "Git",
+      "name": "Discard uncommitted work",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+(checkout\\s+--\\s+\\.|restore\\s+(--staged\\s+)?\\.(\\s|$)|stash\\s+(clear|drop))"
+    },
+    {
+      "id": "GIT-08",
+      "category": "Git",
+      "name": "Skip commit hooks (--no-verify)",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bgit\\s+(commit|push)\\b[^;&|]*--no-verify\\b"
+    },
+    {
+      "id": "NET-01",
+      "category": "Network and APIs",
+      "name": "Pipe a download straight into a shell",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(curl|wget|iwr|Invoke-WebRequest|irm|Invoke-RestMethod)\\b[^;&]*\\|\\s*(sudo\\s+)?(ba|z|da)?sh\\b|\\b(iex|Invoke-Expression)\\b[^;&|]*\\b(iwr|irm|Invoke-WebRequest|Invoke-RestMethod|DownloadString)"
+    },
+    {
+      "id": "NET-02",
+      "category": "Network and APIs",
+      "name": "TLS certificate checks turned off",
+      "action": "block",
+      "on": [
+        "shell",
+        "code"
+      ],
+      "regex": "(?i)rejectUnauthorized\\s*:\\s*false|NODE_TLS_REJECT_UNAUTHORIZED\\s*=?\\s*['\\\"]?0|verify\\s*=\\s*False\\b|InsecureSkipVerify\\s*:\\s*true|\\bcurl\\b[^;&|]*\\s(-k|--insecure)\\b|trustAllCerts|TrustAllCerts|NoopHostnameVerifier|ALLOW_ALL_HOSTNAME_VERIFIER|strictSSL\\s*:\\s*false|--no-check-certificate|-SkipCertificateCheck"
+    },
+    {
+      "id": "NET-03",
+      "category": "Network and APIs",
+      "name": "Endless loop calling the network from the shell",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?is)(\\bwhile\\s+(true|:|\\[\\s*1\\s*\\])|\\buntil\\s+false|\\bfor\\s*\\(\\(\\s*;\\s*;\\s*\\)\\)|\\bwhile\\s*\\(\\s*\\$true\\s*\\)).*\\b(curl|wget|http|Invoke-WebRequest|Invoke-RestMethod|iwr|irm)\\b"
+    },
+    {
+      "id": "NET-04",
+      "category": "Network and APIs",
+      "name": "Unbounded retry loop around an API call",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "(?s)\\bwhile\\s*\\(\\s*(true|1|!0)\\s*\\)\\s*\\{(?:(?!\\bbreak\\b|\\bmaxRetries\\b|\\bmax_retries\\b|\\battempt).){0,800}?(fetch\\s*\\(|axios|HttpClient|RestTemplate|WebClient|OkHttp|requests\\.(get|post|put|delete)|http\\.(get|request)|urlopen|HttpURLConnection)"
+    },
+    {
+      "id": "NET-05",
+      "category": "Network and APIs",
+      "name": "Retry limit of 100 or more, or unlimited",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "(?i)\\b(max_?retries|retries|max_?attempts|retry_?count)\\s*[:=]\\s*(-1|[1-9][0-9]{2,}|Infinity|Integer\\.MAX_VALUE)"
+    },
+    {
+      "id": "SEC-01",
+      "category": "Secrets and data",
+      "name": "Dump all environment variables",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(^|[;&|]\\s*)(printenv|env|set)\\s*($|[;&|>])|\\b(Get-ChildItem|gci|dir|ls)\\s+env:"
+    },
+    {
+      "id": "SEC-02",
+      "category": "Secrets and data",
+      "name": "Read OS credential stores or shell history",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bsecurity\\s+find-(generic|internet)-password\\b|\\bcmdkey\\s+/list\\b|\\bvaultcmd\\b|\\bmimikatz\\b|bash_history|zsh_history|ConsoleHost_history"
+    },
+    {
+      "id": "SYS-01",
+      "category": "System security",
+      "name": "Run as administrator (sudo, RunAs)",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(^|[;&|]\\s*)sudo\\b|\\bStart-Process\\b[^;&|]*-Verb\\s+RunAs|\\brunas\\b"
+    },
+    {
+      "id": "SYS-02",
+      "category": "System security",
+      "name": "Turn off firewall, antivirus, SELinux or audit logging",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bsetenforce\\s+0\\b|\\bufw\\s+disable\\b|\\biptables\\s+(-F|--flush)\\b|netsh\\s+advfirewall\\s+set\\s+\\w+\\s+state\\s+off|Set-MpPreference\\b[^;&|]*-Disable\\w+\\s+\\$?true|Set-NetFirewallProfile\\b[^;&|]*-Enabled\\s+\\$?False|\\bsystemctl\\s+(stop|disable|mask)\\s+(firewalld|auditd|apparmor|ufw)\\b"
+    },
+    {
+      "id": "SYS-03",
+      "category": "System security",
+      "name": "Shut down or reboot the machine, kill everything",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(^|[;&|]\\s*)(sudo\\s+)?(shutdown|reboot|halt|poweroff)\\b|\\b(Stop|Restart)-Computer\\b|\\bkill\\s+-9\\s+-1\\b|\\bcrontab\\s+-r\\b"
+    },
+    {
+      "id": "SYS-04",
+      "category": "System security",
+      "name": "Kill processes by name",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(killall|pkill|taskkill)\\b|\\bStop-Process\\b[^;&|]*-Name\\b"
+    },
+    {
+      "id": "SYS-05",
+      "category": "System security",
+      "name": "Create scheduled tasks or services (persistence)",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bcrontab\\s+(-e|\\S+\\.\\w+)|\\bschtasks\\s+/create\\b|\\bsystemctl\\s+enable\\b|\\bRegister-ScheduledTask\\b|\\bNew-Service\\b|\\bsc\\s+create\\b"
+    },
+    {
+      "id": "SUP-01",
+      "category": "Supply chain",
+      "name": "Install a new package",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(npm|pnpm|yarn|bun)\\s+(install|i|add)(\\s+-\\S+)*\\s+[^-;&|\\s]|\\b(pip3?|python3?\\s+-m\\s+pip)\\s+install\\b(?![^;&|]*\\s(-r|--requirement|-e|--editable|-c|--constraint)\\b)(\\s+-\\S+)*\\s+(?!-)[^\\s;&|.]|\\bgo\\s+(get|install)\\s+\\S|\\bcargo\\s+(add|install)\\b|\\bgem\\s+install\\b|\\b(choco|winget|brew|scoop)\\s+install\\b|\\bapt(-get)?\\s+install\\b"
+    },
+    {
+      "id": "SUP-02",
+      "category": "Supply chain",
+      "name": "Install from a raw URL or Git repo",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(npm|pnpm|yarn|pip3?)\\s+(install|add|i)\\b[^;&|]*\\s(?<!--index-url\\s)(?<!--extra-index-url\\s)(?<!--registry\\s)(?<!\\s-i\\s)(https?://|git\\+|github:)"
+    },
+    {
+      "id": "SUP-03",
+      "category": "Supply chain",
+      "name": "Custom package registry or trusted host",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)--registry[=\\s]|--index-url[=\\s]|--extra-index-url[=\\s]|--trusted-host[=\\s]"
+    },
+    {
+      "id": "SUP-04",
+      "category": "Supply chain",
+      "name": "Publish a package or image",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\b(npm|pnpm|yarn)\\s+publish\\b|\\bdocker\\s+push\\b|\\bmvn\\b[^;&|]*\\sdeploy\\b|\\bgradlew?\\b[^;&|]*\\spublish|\\btwine\\s+upload\\b|\\bcargo\\s+publish\\b|\\bgh\\s+release\\s+create\\b"
+    },
+    {
+      "id": "PRD-01",
+      "category": "Production",
+      "name": "Command aimed at production",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)--context[=\\s]\\S*prod|--profile[=\\s]\\S*prod|--env(ironment)?[=\\s]prod(uction)?\\b|\\b(NODE_ENV|SPRING_PROFILES_ACTIVE|ENV|APP_ENV|RAILS_ENV|ASPNETCORE_ENVIRONMENT)=\\S*prod|use-context\\s+\\S*prod|-var-file[=\\s]\\S*prod|--project[=\\s]\\S*prod|workspace\\s+select\\s+\\S*prod"
+    },
+    {
+      "id": "CODE-01",
+      "category": "Code quality",
+      "name": "Disable or skip tests",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "@Disabled\\b|@Ignore\\b|\\b(it|test|describe)\\.skip\\s*\\(|\\bx(it|describe|test)\\s*\\(|@pytest\\.mark\\.skip|\\bt\\.Skip\\("
+    },
+    {
+      "id": "CODE-02",
+      "category": "Code quality",
+      "name": "Build skipping tests",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)-DskipTests\\b|-Dmaven\\.test\\.skip=true|\\s-x\\s+test\\b|--exclude-task\\s+test\\b"
+    },
+    {
+      "id": "CODE-03",
+      "category": "Code quality",
+      "name": "SQL built by string concatenation (injection risk)",
+      "action": "ask",
+      "on": [
+        "code"
+      ],
+      "regex": "(?i)\\\"\\s*(select|insert|update|delete)\\b[^\\\"]*\\\"\\s*\\+\\s*\\w|\\bf\\\"(select|insert|update|delete)\\b[^\\\"]*\\{|`(select|insert|update|delete)\\b[^`]*\\$\\{"
+    },
+    {
+      "id": "OBF-01",
+      "category": "Evasion",
+      "name": "Decode-and-run (base64, certutil, hex, encoded PowerShell)",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(base64\\s+(-d|--decode|-D)|certutil(\\.exe)?\\s+-decode|xxd\\s+-r|openssl\\s+(enc\\s+)?-d\\b|FromBase64String|\\brev\\b)[^;&]*\\|\\s*(sudo\\s+)?(ba|z|da|k)?sh\\b|\\b(ba|z)?sh\\s+-c\\s+[\\\"']?\\$\\(\\s*(echo|printf|base64|xxd|cat|rev|curl|wget)\\b|\\b(powershell|pwsh)(\\.exe)?\\b[^;&|]*\\s-(e|ec|en|enc|enco|encodedcommand)\\s+[A-Za-z0-9+/=]{16,}|\\b(ba|z)?sh\\s+<\\s*\\(\\s*(curl|wget|base64|echo)|\\b(printf|echo)\\b[^;&|]*\\\\x[0-9a-fA-F]{2}[^;&]*\\|\\s*(ba|z)?sh\\b"
+    },
+    {
+      "id": "OBF-02",
+      "category": "Evasion",
+      "name": "eval / Invoke-Expression of a built-up command",
+      "action": "ask",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(^|[;&|]\\s*)eval\\b|\\b(iex|Invoke-Expression)\\b|\\bsource\\s+<\\("
+    },
+    {
+      "id": "OBF-03",
+      "category": "Evasion",
+      "name": "Inline Python/Node/Ruby/Perl doing deletes, shell calls or SQL",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?is)\\b(python3?|py|node|deno|bun|ruby|perl|php)\\b\\s+(-\\w+\\s+)*(-c|-e|--eval|-r)\\s.*(rmtree|os\\.remove|os\\.unlink|os\\.rmdir|shutil\\.|\\bunlink(Sync)?\\s*\\(|\\brmSync\\b|\\brmdirSync\\b|fs\\.rm|fs\\.promises\\.rm|FileUtils\\.rm|File\\.delete|subprocess|child_process|os\\.system|os\\.popen|execSync|spawnSync|\\bsystem\\s*\\(|DROP\\s+TABLE|TRUNCATE\\s|DELETE\\s+FROM)"
+    },
+    {
+      "id": "OBF-04",
+      "category": "Evasion",
+      "name": "Dangerous command name hidden in a variable or escape codes",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)(^|[;&|]\\s*)(export\\s+)?\\w+=['\\\"]?(rm|rmdir|del|terraform|tofu|kubectl|helm|aws|gcloud|az|psql|mysql|mongosh|redis-cli|dd|mkfs|shred|git|docker)['\\\"]?\\s*(;|&&|\\n)|\\$'(\\\\x[0-9a-fA-F]{2}|\\\\[0-7]{3})+"
+    },
+    {
+      "id": "SELF-01",
+      "category": "Self-protection",
+      "name": "Turn off permissions or hooks",
+      "action": "block",
+      "on": [
+        "shell",
+        "any"
+      ],
+      "regex": "(?i)--dangerously-skip-permissions|disableAllHooks|\\\"defaultMode\\\"\\s*:\\s*\\\"bypassPermissions\\\""
+    },
+    {
+      "id": "SELF-02",
+      "category": "Self-protection",
+      "name": "Disable or uninstall the GuardRail plugin, or swap Claude settings",
+      "action": "block",
+      "on": [
+        "shell"
+      ],
+      "regex": "(?i)\\bclaude\\s+plugin\\s+(disable|uninstall|remove|marketplace\\s+remove)\\b|\\bclaude\\b[^;&|]*\\s--settings\\b"
+    }
+  ]
+}

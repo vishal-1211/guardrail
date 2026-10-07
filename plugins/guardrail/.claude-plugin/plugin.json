@@ -1,0 +1,8 @@
+{
+  "name": "guardrail",
+  "version": "0.2.0",
+  "description": "Company policy for Claude Code: blocks or asks before risky agent actions (databases, Terraform, cloud, Kubernetes, files, Git, external APIs, secrets, supply chain), resists override attempts, and keeps an audit log with a live dashboard.",
+  "author": {
+    "name": "Vishal Arora"
+  }
+}
